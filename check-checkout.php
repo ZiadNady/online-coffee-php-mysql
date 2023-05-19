@@ -4,7 +4,6 @@ error_reporting(0);
 include('includes/connection.php');
 if($_SESSION['checkout']!=''){
 $_SESSION['checkout']='';
-
 $username=$_POST['username'];
 $sql ="SELECT Status,Username FROM checkout WHERE Username=:username";
 $query= $dbh -> prepare($sql);
@@ -20,7 +19,6 @@ if($result->Status==1)
 $_SESSION['checkout']=$_POST['username'];
 echo "<script type='text/javascript'> document.location ='process.php'; </script>";
 } else {
-    
 $_SESSION['noorder']="Please checkout";
 header('location:mycart.php');
 }

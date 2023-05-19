@@ -26,11 +26,9 @@ $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
 $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
-
   $_SESSION['noproduct']="There are no products in your cart";
   header('location:checkout.php');
 }
-
 if(isset($_POST['cancel']))
 {    
 $username=$_SESSION['username'];  
@@ -40,22 +38,16 @@ $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
-
 $_SESSION['cancel']="Your order has been cancel";
 }
-
 if(isset($_POST['continue']))
 {    
 $_SESSION['continue']="Your already checkout";
 }
-
 if(isset($_POST['canceled']))
 {    
 $_SESSION['canceled']="You haven't checked out yet";
 }
-
-
-
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
@@ -64,9 +56,7 @@ $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
 }
-
 ?>
-
 <html lang="en">
 <head>
 <?php
@@ -80,45 +70,27 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>   
 <title><?php echo htmlentities($result->ShopName);?></title>
-
       <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-        <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME STYLE  -->
-  <link href="assets/bs4/css/all.css" rel="stylesheet"> <!--load all styles -->
-
-  <link href="assets/bs4/css/style.css" rel="stylesheet"> <!--load all styles -->
-
-    <!-- CUSTOM STYLE  -->
+  <link href="assets/bs4/css/all.css" rel="stylesheet"> 
+  <link href="assets/bs4/css/style.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
-
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
-
-
 </head>
-
 <style>
     .errorWrap {
     padding: 10px;
@@ -140,7 +112,6 @@ foreach($results as $result)
     color: grey;
     font-size: 14px;
 }
-
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -168,7 +139,6 @@ foreach($results as $result)
     height: 200px;
     transform: scale(1);
 }
-
 .image-box:hover img {
     transform: scale(1.1);
     cursor: pointer;
@@ -189,32 +159,20 @@ foreach($results as $result)
     border-radius: 50%;
     box-shadow: 2px 2px 5px #000000;
   }
-
   #myBtn:hover {
     background-color: #555;
   }
-
-
     </style>
-
 <body>
-        <!------MENU SECTION START-->
         <?php include('includes/header.php');?>
-<!-- MENU SECTION END-->
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-
     <div class="content-wrapper">
    <div class="container">
             <h4 class="header-line" ><i class="fas fa-shopping-cart"></i>&nbsp My Cart </h4>
-
-
 <div class="row">
-
   <div class="col-md-6">
     <div class="">
       <div class="card-body">
-
       <table class="table">
                                     <thead>
                                         <tr>
@@ -240,7 +198,6 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
-
                                         <tr class="odd gradeX">
                                             <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
                                             <td class="center"><div class="image-box"><img src="admin/uploads/img/<?php echo htmlentities($result->ProductImage);?>"></div></td>
@@ -253,21 +210,14 @@ foreach($results as $result)
                                                  <br><label>Total price: </label> &nbsp<?php echo htmlentities($result->Total);?>  EGP 
                                                  <br><br><a href="mycart.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" style="color:#585858;"><i class="fas fa-trash-alt"></i>&nbsp REMOVE ITEM</a> 
                                                  &nbsp<a href="edit-order.php?edit=<?php echo htmlentities($result->id);?>" style="color:#585858;"><i class="fas fa-edit"></i>&nbsp EDIT ITEM</a> 
-                                                 
                                             </td>
                                         </tr>
-
-
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
                                 </table>
       </div>
-
-      
     </div>
   </div>
-
-
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
@@ -285,24 +235,19 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
-
 <div class="col-md-12">  
 <div class="form-group">
 <label>Product quantity : </label>
 <?php echo htmlentities($result->Quantity);?> item            
 <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
 </div>
-
 <div class="form-group">
 <label>Total price : </label>
 <?php echo htmlentities($result->Total);?> EGP           
 <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
 </div>
 </div>
-
 <?php }} ?> 
-
-
 <div class="col-md-9">  
 <?php if($_SESSION['cancel']!="")
 {?>
@@ -313,7 +258,6 @@ foreach($results as $result)
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
-
 <script>
 function emptyCart() {
   <?php 
@@ -327,7 +271,6 @@ function emptyCart() {
 }
 </script>
 <?php } ?>
-
 <?php if($_SESSION['canceled']!="")
 {?>
 <div class="alert alert-warning" role="alert" >
@@ -338,10 +281,8 @@ function emptyCart() {
 </button>
 </div>
 <?php } ?>
-
 <?php if($_SESSION['edit']!="")
 {?>
-
 <div class="alert alert-success" role="alert" >
  <?php echo htmlentities($_SESSION['edit']);?>
 <?php echo htmlentities($_SESSION['edit']="");?>
@@ -349,12 +290,9 @@ function emptyCart() {
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
 <?php } ?>
-
 <?php if($_SESSION['continue']!="")
 {  ?>
-
 <div class="alert alert-warning" role="alert" >
 <?php echo htmlentities($_SESSION['continue']);?>
 <?php echo htmlentities($_SESSION['continue']="");?>
@@ -363,15 +301,9 @@ function emptyCart() {
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
-
 <?php } ?>
-
-
 </div>
-
-
 <form name="update" method="post">     
-
 <div class="col-md-12">  
 <div class="form-group">
 <?php
@@ -390,7 +322,6 @@ foreach($results as $result)
              <input class="form-control" type="hidden" name="customerlname" value="<?php echo htmlentities($result->LastName);?>" required autocomplete="off"  />
              <input class="form-control" type="hidden" name="customertel" value="<?php echo htmlentities($result->MobileNumber);?>" required autocomplete="off"  />
              <?php }} ?> 
-             
              <?php
 $username=$_SESSION['username'];  
 $status=1;
@@ -409,8 +340,6 @@ foreach($results as $result)
              <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->ProductSum);?>" required autocomplete="off"  />
              <?php }} ?>
              <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
-  
-
 <?php
 $username=$_SESSION['username'];  
 $sql="SELECT * FROM checkout WHERE Username=:username";
@@ -422,58 +351,37 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{               ?>  
-
-
+{               ?>
 <?php if($result->Status==1){?>
 <a href="checkout.php"><button name="continue" type="submit" class="create-account" style="margin-bottom:10px;" > Checkout now </button></a>
 <?php } else { ?>
   <a href=""><button name="checkout" type="submit" class="create-account" style="margin-bottom:10px;" > Checkout now </button></a>
   <?php }?>
-
 <?php if(($result->Status==0)||($result->Status==2)){?>
 &nbsp&nbsp&nbsp<a href=""><button name="canceled" type="submit" class="sign-in" style="margin-bottom:10px;" > Cancel order </button></a>
 <?php } else { ?>
 &nbsp&nbsp&nbsp<a href=""><button name="cancel" type="submit" class="sign-in" style="margin-bottom:10px;" > Cancel order </button></a>
 <?php }?>
 <?php }} ?>  
-
 &nbsp&nbsp&nbsp<a href="history.php" style="color: black;">Checkout item history &nbsp<i class="fas fa-history"></i></a>
-
-
 </div> 
 </div>  
-
 </form>
-
-</div>  
-
-</div>  
-
 </div>  
 </div>  
 </div>  
 </div>  
 </div>  
 </div>  
-
-
-
-      <!------MENU SECTION START-->
+</div>  
+</div>  
       <?php include('includes/footer.php');?>
-<!-- MENU SECTION END-->
-
 <?php } ?>
 </body>
 </html>
-
 <script>
-//Get the button
 var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
@@ -481,12 +389,8 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
 </script>
-
-

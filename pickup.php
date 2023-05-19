@@ -26,11 +26,9 @@ $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
 $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
-
   $_SESSION['noproduct']="There are no products in your cart";
   header('location:checkout.php');
 }
-
 if(isset($_POST['cancel']))
 {    
 $username=$_SESSION['username'];  
@@ -40,22 +38,16 @@ $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
-
 $_SESSION['cancel']="Your order has been cancel";
 }
-
 if(isset($_POST['continue']))
 {    
 $_SESSION['continue']="Your already checkout";
 }
-
 if(isset($_POST['canceled']))
 {    
 $_SESSION['canceled']="You haven't checked out yet";
 }
-
-
-
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
@@ -64,9 +56,7 @@ $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
 }
-
 ?>
-
 <html lang="en">
 <head>
 <?php
@@ -80,45 +70,27 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>   
 <title><?php echo htmlentities($result->ShopName);?></title>
-
       <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-        <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME STYLE  -->
-  <link href="assets/bs4/css/all.css" rel="stylesheet"> <!--load all styles -->
-
-  <link href="assets/bs4/css/style.css" rel="stylesheet"> <!--load all styles -->
-
-    <!-- CUSTOM STYLE  -->
+  <link href="assets/bs4/css/all.css" rel="stylesheet"> 
+  <link href="assets/bs4/css/style.css" rel="stylesheet"> 
     <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
-
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
-
-
 </head>
-
 <style>
     .errorWrap {
     padding: 10px;
@@ -140,7 +112,6 @@ foreach($results as $result)
     color: grey;
     font-size: 14px;
 }
-
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -188,30 +159,18 @@ foreach($results as $result)
     border-radius: 50%;
     box-shadow: 2px 2px 5px #000000;
   }
-
   #myBtn:hover {
     background-color: #555;
   }
-
-
     </style>
-
 <body>
-        <!------MENU SECTION START-->
         <?php include('includes/header.php');?>
-<!-- MENU SECTION END-->
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-
     <div class="content-wrapper">
    <div class="container">
             <h4 class="header-line" >Order in process </h4>
-
-
-
 <?php if($_SESSION['purchase']!="")
 {?>
-
 <script>
 function emptyCart() {
   <?php 
@@ -224,11 +183,9 @@ function emptyCart() {
     $query->execute();?>
 }
 </script>
-
 <script>
 function emptyCart() {
-  <?php 
-    
+  <?php
     $username=$_SESSION['username'];  
     $status=2;
     $sql="UPDATE history SET Status=:status WHERE Username=:username";
@@ -236,22 +193,14 @@ function emptyCart() {
     $query->bindParam(':username',$username,PDO::PARAM_STR);
     $query->bindParam(':status',$status,PDO::PARAM_STR);
     $query->execute();
-    
     ?>
-
-    
 }
 </script>
-
 <?php } ?>
-
-
 <div class="row">
-
   <div class="col-md-12">
     <div class="">
       <div class="card-body">
-
       <table class="table">
                                     <thead>
                                         <tr>
@@ -263,8 +212,6 @@ function emptyCart() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                    
                                     <?php
 $username=$_SESSION['username'];  
 $sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total,Status FROM cart WHERE Username=:username";
@@ -277,7 +224,6 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
-
                                         <tr class="odd gradeX">
                                             <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
                                             <td class="center"><div class="image-box"><img src="admin/uploads/img/<?php echo htmlentities($result->ProductImage);?>"></div></td>
@@ -298,41 +244,23 @@ foreach($results as $result)
                                                   <?php } ?>
                                             </td>
                                         </tr>
-
-
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
                                 </table>
-      </div>
-
-      
+      </div>      
     </div>
   </div>
-
-
 </div>  
 </div>  
 </div>  
-
 </div>  </div>  
-
-
-
-      <!------MENU SECTION START-->
       <?php include('includes/footer.php');?>
-<!-- MENU SECTION END-->
-
 <?php } ?>
 </body>
 </html>
-
 <script>
-//Get the button
 var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
@@ -340,12 +268,8 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
 </script>
-
-

@@ -1,10 +1,8 @@
 <?php 
 require_once("includes/connection.php");
-// code user email availablity
 if(!empty($_POST["emailid"])) {
 	$email= $_POST["emailid"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
-
 		echo "<span style='color:red'> Please enter a valid email</span>";
 	}
 	else {
@@ -23,12 +21,9 @@ if($query -> rowCount() > 0){
 }
 }
 }
-
-// code user email register availablity
 if(!empty($_POST["emailreg"])) {
 	$email= $_POST["emailreg"];
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
-
 		echo "<span style='color:red'> Please enter a valid email</span>";
 	}
 	else {
@@ -47,9 +42,6 @@ if($query -> rowCount() > 0){
 }
 }
 }
-
-
-//Code check user name
 if(!empty($_POST["username"])) {
 	$username=$_POST["username"];
 	$sql ="SELECT Username FROM member WHERE Username=:username";
@@ -69,10 +61,6 @@ if(!empty($_POST["username"])) {
 			echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
-	// End code check username
-
-
-//Code check password name
 if(!empty($_POST["password"])) {
 	$password=$_POST["password"];
 	$sql ="SELECT Password FROM member WHERE Password=:password";
@@ -89,10 +77,6 @@ if(!empty($_POST["password"])) {
 			echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
-	// End code check password
-
-
-//Code check credit name
 if(!empty($_POST["cardnumber"])) {
 	$cardnumber=$_POST["cardnumber"];
 	$sql ="SELECT CardNumber FROM credit WHERE CardNumber=:cardnumber";
@@ -109,7 +93,4 @@ if(!empty($_POST["cardnumber"])) {
 			echo "<script>$('#submit').prop('disabled',false);</script>";
 	}
 }
-	// End code check credit
-
-
 ?>

@@ -1,4 +1,3 @@
-
 <?php 
 session_start();
 include('includes/connection.php');
@@ -7,7 +6,6 @@ include('includes/connection.php');
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
 </head>
-
 <style>
     .container {
         margin-top: 5%;
@@ -29,7 +27,6 @@ include('includes/connection.php');
         text-transform:none;
         font-family: 'Noto Sans JP', sans-serif; 
     }
-
     .header-left {
         font-weight:900;
         padding-bottom:25px;
@@ -42,7 +39,6 @@ include('includes/connection.php');
         text-transform:none;
         font-family: 'Noto Sans JP', sans-serif; 
     }
-
     .header-right {
         text-align: right;
         padding-bottom:25px;
@@ -54,7 +50,6 @@ include('includes/connection.php');
     .text_eng,a {
       font-family: 'Asap', sans-serif;
         font-size: 14px;
-
     }  
     .header1 {
         padding: 50px;
@@ -73,16 +68,10 @@ include('includes/connection.php');
     img:hover{
       cursor: pointer;
     }
-
     .count {
-
-    }  
-
-
+    }
 </style>
-
 <?php
-
 $sql="SELECT * from  shop ";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -95,19 +84,15 @@ foreach($results as $result)
 <div class="header">
         <h1 style="font-family: 'Bebas Neue', cursive;letter-spacing:2px; font-size: 64px;text-shadow: 2px 2px black;"><?php echo htmlentities($result->ShopName);?></h1>
       </div>
- 
       <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);">
   <a class="nav-link" href="index.php"><img src="admin/uploads/logo/<?php echo htmlentities($result->Logo);?>" width="60" height="60" ></a>
   <?php }} ?>
-  
   <?php if($_SESSION['login'])
 {
 ?> 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">  
     <li class="nav-item active">
@@ -125,7 +110,6 @@ foreach($results as $result)
         </div>
       </li>
     </ul>
-
     <ul class="navbar-nav navbar-right">
     <li class="nav-item active">
     <?php
@@ -177,7 +161,6 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?> 
-                   
         <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-shopping-cart"></i>&nbsp My Cart  <span class="count"><?php echo htmlentities($result->NumberCart);?></span></p><span class="sr-only" >(current)</span></a>
         <?php }} ?>
       </li>
@@ -186,13 +169,10 @@ foreach($results as $result)
       </li>
     </ul>
   </div>
-
   <?php } else { ?>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">  
     <li class="nav-item active">
@@ -210,7 +190,6 @@ foreach($results as $result)
         </div>
       </li>
     </ul>
-
     <ul class="navbar-nav navbar-right">
     <li class="nav-item active">
         <a class="nav-link" href="loginmember.php"><p class="sign-in">Sign in</p><span class="sr-only" >(current)</span></a>

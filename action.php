@@ -13,14 +13,11 @@ if(isset($_POST["mid"]) && isset($_POST["mname"]) && isset($_POST["mprice"]) && 
     $price = $_POST["mprice"];
     $image = $_POST["mimg"];
     $qty = 1;
-
     $sql = "SELECT ProductId FROM cart WHERE ProductId=:id";
     $query = $dbh -> prepare($sql);
     $query->execute(array(":id"=>$id));
     $results=$query->fetchAll(PDO::FETCH_OBJ);
-
     $check_id = $results["id"];
-
     if(!$check_id)
     {
         $sql = "INSERT INTO cart(ProductName, ProductPrice, ProductImage, Quantity, TotalPrice) VALUES(:name,:price,:image,:qty,:total_price)";
@@ -31,7 +28,6 @@ if(isset($_POST["mid"]) && isset($_POST["mname"]) && isset($_POST["mprice"]) && 
         $query->bindParam(':qty',$qty,PDO::PARAM_STR);
         $query->bindParam(':total_price',$total_price,PDO::PARAM_STR);
         $query->execute();
-
         echo '<div class="alert alert-success" role="alert">
                Product added to your cart
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -49,7 +45,6 @@ if(isset($_POST["mid"]) && isset($_POST["mname"]) && isset($_POST["mprice"]) && 
     }
 }
 ?>
-
 <?php 
 if(isset($_GET["cartItem"]) && isset($_GET["cartItem"])=="cart_item")
 {

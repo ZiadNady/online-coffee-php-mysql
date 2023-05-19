@@ -3,11 +3,7 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-  
-
 ?>
-
-
 <html lang="en">
 <head>
 <?php
@@ -21,45 +17,27 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>   
 <title><?php echo htmlentities($result->ShopName);?></title>
-
       <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-        <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME STYLE  -->
-  <link href="assets/bs4/css/all.css" rel="stylesheet"> <!--load all styles -->
-
-  <link href="assets/bs4/css/style.css" rel="stylesheet"> <!--load all styles -->
-
-    <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- GOOGLE FONT -->
+  <link href="assets/bs4/css/all.css" rel="stylesheet">
+  <link href="assets/bs4/css/style.css" rel="stylesheet"> 
+    <link href="assets/css/style.css" rel="stylesheet" /
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
-
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
-
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
   <style>
-  /* Make the image fully responsive */
   footer {
       background-color: #f2f2f2;
       padding: 25px;
@@ -90,12 +68,10 @@ foreach($results as $result)
         display: block;
         transform: scale(1);
     }
-
     .image-box:hover img {
         transform: scale(1.1);
         cursor: pointer;
     }
-
     .img1{
       width: 570px;
       height: 570px;
@@ -103,21 +79,18 @@ foreach($results as $result)
       margin-right:35px;
       margin-bottom:20px;
     }
-
     .img2{
       width: 300px;
       height: 275px;
       margin-top:20px;
       margin-left: -25px;
     }
-
     .img3{
       width: 300px;
       height: 275px;
       margin-top:20px;
       margin-left: -25px;
     }
-
     .img4{
       width: 300px;
       height: 275px;
@@ -146,7 +119,6 @@ foreach($results as $result)
     border-radius: 50%;
     box-shadow: 2px 2px 5px #000000;
   }
-
   #myBtn:hover {
     background-color: #555;
   }
@@ -178,7 +150,6 @@ foreach($results as $result)
           width: 100%;
           height: 384px;
         }
-        
         .carousel-item img {
             top: 0;
             left: 0;
@@ -189,20 +160,11 @@ foreach($results as $result)
           width: 100%;
           height: 100%;
         }
-
   </style>
-  
 </head>
-
 <body>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-
-    <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
-<!-- MENU SECTION END-->
-
-
 <?php
 $username=$_SESSION['username'];  
 $sql="SELECT * FROM member WHERE Username=:username";
@@ -215,7 +177,6 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?> 
-
 <?php if(($result->AddressStatus==1)&&($result->PaymentStatus==1)) { ?>
   <?php ($_SESSION['alertlogin']!="")
 ?>
@@ -225,7 +186,6 @@ foreach($results as $result)
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-address.php" class="alert-link">Add your address</a> and <a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here
 </div>
-
 <?php } else if($result->AddressStatus==1) { ?>
   <?php ($_SESSION['alertlogin']!="")
 ?>
@@ -235,7 +195,6 @@ foreach($results as $result)
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-address.php" class="alert-link">Add your address</a>&nbsp here
 </div>
-
   <?php } else if($result->PaymentStatus==1)  { ?>
     <?php ($_SESSION['alertlogin']!="")
 ?>
@@ -245,7 +204,6 @@ foreach($results as $result)
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here
 </div>
-
 <?php } else{ ?>
     <?php ($_SESSION['alertlogin']!="")
 ?>
@@ -254,30 +212,12 @@ foreach($results as $result)
  <?php echo htmlentities($_SESSION['alertlogin']);?>
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 </div>
-
     <?php } ?>
-
-
-
-
-
-
 <?php }} ?>
-
-
-    <!------MENU SECTION START-->
     <?php include('includes/carousel.php');?>
-<!-- MENU SECTION END-->
-
-
-
-<!--REGISTER PANEL START-->     
-
   <div class="container-fluid">
   <h3 class="header-shop">Today’s good mood is sponsored by coffee</h3>
-
     <div class="row">
-
       <div class="col-md-6">
       <div class="image-box img1">
       <a>
@@ -290,13 +230,11 @@ foreach($results as $result)
     if($query->rowCount() > 0)
     {
     foreach($results as $result)
-    {               ?>  
-  
+    {               ?>
           <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="570" height="570" style="">
           <?php }} ?></a>
           </div>
       </div>
-
       <div class="col-md-3">
       <div class="image-box img2">
       <a href="cake.php" > 
@@ -313,8 +251,6 @@ foreach($results as $result)
           <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
       </div>
-
-
       <div class="image-box img3">
       <a href="beverage.php" > 
       <?php
@@ -331,7 +267,6 @@ foreach($results as $result)
           <?php }} ?></a>
       </div>
       </div>
-
       <div class="col-md-3">
       <div class="image-box img4">
       <a href="bakery.php" > 
@@ -348,7 +283,6 @@ foreach($results as $result)
           <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
       </div>
-
       <div class="image-box img5">
       <a href="dessert.php" > 
       <?php
@@ -365,25 +299,14 @@ foreach($results as $result)
           <?php }} ?></a>
       </div>
       </div>
-
       </div>
     </div>
-
-        <!------FOOTER SECTION START-->
         <?php include('includes/footer.php');?>
-
-
-
 </body>
-
 </html>
 <script>
-//Get the button
 var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
@@ -391,8 +314,6 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;

@@ -2,11 +2,7 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-
-
 ?>
-
-
 <html lang="en">
 <head>
 <?php
@@ -20,41 +16,25 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>   
 <title><?php echo htmlentities($result->ShopName);?></title>
-
       <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-        <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME STYLE  -->
-  <link href="assets/bs4/css/all.css" rel="stylesheet"> <!--load all styles -->
-
-  <link href="assets/bs4/css/style.css" rel="stylesheet"> <!--load all styles -->
-
-    <!-- CUSTOM STYLE  -->
+  <link href="assets/bs4/css/all.css" rel="stylesheet">
+  <link href="assets/bs4/css/style.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
   <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
-
   <style>
-  /* Make the image fully responsive */
   .carousel-inner img {
     width: 100%;
     height: 100%;
@@ -76,12 +56,10 @@ foreach($results as $result)
         text-align: center;
         font-family: arial;
         }
-
         .price {
         color: grey;
         font-size: 16px;
         }
-
         .card button {
         border: none;
         outline: 0;
@@ -93,11 +71,9 @@ foreach($results as $result)
         width: 100%;
         font-size: 18px;
         }
-
         .card button:hover {
         opacity: 0.7;
         }
-
         * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -122,7 +98,6 @@ foreach($results as $result)
         height: 270px;
         transform: scale(1);
     }
-
     .image-box:hover img {
         transform: scale(1.1);
         cursor: pointer;
@@ -143,23 +118,14 @@ foreach($results as $result)
     border-radius: 50%;
     box-shadow: 2px 2px 5px #000000;
   }
-
   #myBtn:hover {
     background-color: #555;
   }
-
-  
   </style>
-  
 </head>
-
 <body>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-    <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
-<!-- MENU SECTION END-->
-
 <div class="container-fluid">
 <h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Cake</h3>
 <?php 
@@ -181,27 +147,15 @@ foreach($results as $result)
   <a href="product-cake.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="text-align:center;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
   <p style="text-align:center;"><?php echo htmlentities($result->Description);?></p>
   <p class="price" style="text-align:center;"><?php echo htmlentities($result->Price);?>EGP </p>
-
 </div>
 <?php }} ?>   
 </div>
-
-        <!------FOOTER SECTION START-->
         <?php include('includes/footer.php');?>
-
-
-
-
-
 </body>
 </html>
 <script>
-//Get the button
 var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
@@ -209,8 +163,6 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;

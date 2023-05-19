@@ -9,8 +9,6 @@ header('location:../loginadmin.php');
 else{ 
 if(isset($_POST['update']))
 {
-
-
     $images=$_FILES["img1"]["name"];
 
     move_uploaded_file($_FILES["img1"]["tmp_name"],"uploads/banner/".$_FILES["img1"]["name"]);
@@ -18,13 +16,8 @@ if(isset($_POST['update']))
     $query = $dbh->prepare($sql);
     $query->bindParam(':images',$images,PDO::PARAM_STR);
     $query->execute();
-    
     $msg="Banner updated successfully";
     }
-    
-
-  
-  
 ?>
 
 <!DOCTYPE html>
