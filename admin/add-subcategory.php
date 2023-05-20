@@ -6,24 +6,31 @@ if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:loginadmin.php');
 }
-if(isset($_POST['add']))
-{ 
- 
-$subcategory=$_POST['subcategory'];
-$sql="INSERT INTO subcategory (SubCategory) VALUES(:subcategory)";
-$query = $dbh->prepare($sql);
-$query->bindParam(':subcategory',$subcategory,PDO::PARAM_STR);
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-  $msg="Add the new Sub-Category successfully";
-}
-else {
-$error="Something went wrong. please try again";  
-}
-}
+if(isset($_POST['add'])) {
 
+    $subcategory=$_POST['subcategory'];
+
+    $err = []; // Initialize an empty array to store errors
+
+    // Perform form validation
+    if (empty($subcategory)) {
+        $err[] = "subcategory is required.";
+    }
+
+    if (empty($err)) {
+
+        $sql="INSERT INTO subcategory (SubCategory) VALUES(:subcategory)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':subcategory', $subcategory, PDO::PARAM_STR);
+        $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if($lastInsertId) {
+            $msg="Add the new Sub-Category successfully";
+        } else {
+            $error="Something went wrong. please try again";
+        }
+    }
+}
 ?>
 
 <html lang="en">

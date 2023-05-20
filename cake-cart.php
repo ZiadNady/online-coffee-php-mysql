@@ -2,52 +2,72 @@
 session_start();
 error_reporting(0);
 include('includes/connection.php');
-if(strlen($_SESSION['login'])==0)
-    {   
-header('location:loginmember.php');
-}
-else{ 
-if(isset($_POST['addcart']))
-{    
-  $username=$_SESSION['username'];  
-  $productcode=$_POST['productcode'];
-  $quantity=$_POST['quantity'];
-  $total=$_POST['total'];
-  $productimage=$_POST['productimage'];
-  $productname=$_POST['productname'];
-  $productprice=$_POST['productprice'];
-  $status=1;
-  $sql="INSERT INTO  cart (ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,Status) VALUES(:productcode,:productname,:productimage,:productprice,:quantity,:total,:username,:status)";
-  $query = $dbh->prepare($sql);
-  $query->bindParam(':username',$username,PDO::PARAM_STR);
-  $query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
-  $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
-  $query->bindParam(':total',$total,PDO::PARAM_STR);
-  $query->bindParam(':productimage',$productimage,PDO::PARAM_STR);
-  $query->bindParam(':productname',$productname,PDO::PARAM_STR);
-  $query->bindParam(':productprice',$productprice,PDO::PARAM_STR);
-  $query->bindParam(':status',$status,PDO::PARAM_STR);
-  $query->execute();
-  $username=$_SESSION['username'];  
-  $productcode=$_POST['productcode'];
-  $quantity=$_POST['quantity'];
-  $total=$_POST['total'];
-  $productimage=$_POST['productimage'];
-  $productname=$_POST['productname'];
-  $productprice=$_POST['productprice'];
-  $status=1;
-  $sql="INSERT INTO  history (ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,Status) VALUES(:productcode,:productname,:productimage,:productprice,:quantity,:total,:username,:status)";
-  $query = $dbh->prepare($sql);
-  $query->bindParam(':username',$username,PDO::PARAM_STR);
-  $query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
-  $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
-  $query->bindParam(':total',$total,PDO::PARAM_STR);
-  $query->bindParam(':productimage',$productimage,PDO::PARAM_STR);
-  $query->bindParam(':productname',$productname,PDO::PARAM_STR);
-  $query->bindParam(':productprice',$productprice,PDO::PARAM_STR);
-  $query->bindParam(':status',$status,PDO::PARAM_STR);
-  $query->execute();
-}
+
+$err = []; // Initialize an empty array to store errors
+
+if (strlen($_SESSION['login']) == 0) {   
+    header('location: loginmember.php');
+} else { 
+    if (isset($_POST['addcart'])) {    
+        $username = $_SESSION['username'];
+        $productcode = $_POST['productcode'];
+        $quantity = $_POST['quantity'];
+        $total = $_POST['total'];
+        $productimage = $_POST['productimage'];
+        $productname = $_POST['productname'];
+        $productprice = $_POST['productprice'];
+        $status = 1;
+
+        // Perform validation
+        if (empty($username)) {
+            $err[] = "Username is required.";
+        }
+        if (empty($productcode)) {
+            $err[] = "Product code is required.";
+        }
+        if (empty($quantity)) {
+            $err[] = "Quantity is required.";
+        }
+        if (empty($total)) {
+            $err[] = "Total is required.";
+        }
+        if (empty($productimage)) {
+            $err[] = "Product image is required.";
+        }
+        if (empty($productname)) {
+            $err[] = "Product name is required.";
+        }
+        if (empty($productprice)) {
+            $err[] = "Product price is required.";
+        }
+
+        if (empty($err)) {
+            // All fields are filled, proceed with database insertion
+            $sql = "INSERT INTO cart (ProductCode, ProductName, ProductImage, ProductPrice, Quantity, TotalPrice, Username, Status) VALUES (:productcode, :productname, :productimage, :productprice, :quantity, :total, :username, :status)";
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':productcode', $productcode, PDO::PARAM_STR);
+            $query->bindParam(':productname', $productname, PDO::PARAM_STR);
+            $query->bindParam(':productimage', $productimage, PDO::PARAM_STR);
+            $query->bindParam(':productprice', $productprice, PDO::PARAM_STR);
+            $query->bindParam(':quantity', $quantity, PDO::PARAM_STR);
+            $query->bindParam(':total', $total, PDO::PARAM_STR);
+            $query->bindParam(':username', $username, PDO::PARAM_STR);
+            $query->bindParam(':status', $status, PDO::PARAM_STR);
+            $query->execute();
+
+            $sql = "INSERT INTO history (ProductCode, ProductName, ProductImage, ProductPrice, Quantity, TotalPrice, Username, Status) VALUES (:productcode, :productname, :productimage, :productprice, :quantity, :total, :username, :status)";
+            $query = $dbh->prepare($sql);
+            $query->bindParam(':productcode', $productcode, PDO::PARAM_STR);
+            $query->bindParam(':productname', $productname, PDO::PARAM_STR);
+            $query->bindParam(':productimage', $productimage, PDO::PARAM_STR);
+            $query->bindParam(':productprice', $productprice, PDO::PARAM_STR);
+            $query->bindParam(':quantity', $quantity, PDO::PARAM_STR);
+            $query->bindParam(':total', $total, PDO::PARAM_STR);
+            $query->bindParam(':username', $username, PDO::PARAM_STR);
+            $query->bindParam(':status', $status, PDO::PARAM_STR);
+            $query->execute();
+        }
+    }
 ?>
  <head>
 <?php
